@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# find_offset.py - a pwntools script I used for calculating offsets of local binaries
+# find_offset.py - a pwntools script that can calculate an offset for x86 and x86_64 ELF binaries
 # Created by dilldylanpickle on 5-8-2023
 # GitHub: https://github.com/dilldylanpickle
 #
