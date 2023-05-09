@@ -107,7 +107,7 @@ def find_offset(binary_path):
 if __name__ == '__main__':
 
     # Initiate the executables name to declare a valid filesystem path
-    binary_path = './vulnerable'
+    binary_path = './vulnerable64'
     warnings.filterwarnings("ignore", category=BytesWarning)
 
     # Perform the exploitation on the specified binary
