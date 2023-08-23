@@ -9,7 +9,7 @@
 #   - Pwntools (https://github.com/Gallopsled/pwntools)
 
 import os           # Provides a way of using operating system dependent functionalities
-from pwn import *   # Import Python3 library for accessing operating system functionality
+from pwn import *   # Import CTF framework and exploit development library
 
 def exploit(binary_path):
 
@@ -38,7 +38,7 @@ def exploit(binary_path):
 def find_cyclic_pattern(io):
 
     # Generate and send a cyclic pattern as input to the binary
-    pattern = cyclic(420)
+    pattern = cyclic(144)
     io.sendline(pattern)
     io.wait()
 
@@ -77,10 +77,11 @@ def find_offset(elf):
             # Revert the log level to the original value
             context.log_level = log_level
 
-        # Move all files with the pattern 'core.*' to the 'core' directory
+        # Move all files with the pattern 'core.*' or just 'core' to the 'Core_Dumps' directory
         for filename in os.listdir('.'):
-            if filename.startswith('core.'):
+            if filename.startswith('core.') or filename == 'core':
                 os.rename(filename, os.path.join('Core_Dumps', filename))
+
 
         # Output the calculated offset for debugging purposes
         log.debug(f"The offset calculated to overwrite the instruction pointer is {offset} bytes")
